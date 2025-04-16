@@ -1,15 +1,15 @@
-/* Special Gothic Expanded One */
-@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap');
 
 body
 {
     margin:0;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 header
 {
     display:flex;
-    position:fixed;
+    position:sticky;
     margin: 0;
     width:100%;
     height: 50pt;
@@ -34,4 +34,34 @@ header p
 {
     margin-left: 20pt;
     max-height: 75%;
+}
+
+h2
+{
+    margin: 10pt;
+}
+
+table
+{
+    margin-left:30pt;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th
+{
+    font-size:larger;
+}
+
+#scheduletable
+{
+    width: 500pt;
+}
+
+td
+{
+    height: 40pt;
 }
