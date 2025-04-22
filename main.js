@@ -1,2 +1,1 @@
-import { parse } from "./parser";
-
+import { requestFromWorker } from "./requester";
