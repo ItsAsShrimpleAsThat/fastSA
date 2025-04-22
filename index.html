@@ -14,18 +14,13 @@
 
         <div>
             <h2>Schedule</h2>
-            <table id="scheduletable">
-                <tr>
-                    <th style="width:25%;">Time</th>
-                    <th>Block</th>
-                    <th style="width:60%">Activity/Class</th>
-                </tr>
-                <tr>
-                    <td>8:30-9:30</td>
-                    <td>A</td>
-                    <td>Some math class</td>
-                </tr>
-            </table>
+            <div class="flexTable" id="scheduletable">
+                <div class="flexTr">
+                    <div class="flexTd timeColumn">Time</div>
+                    <div class="flexTd">Block</div>
+                    <div class="flexTd">Class/Activity</div>
+                </div>
+            </div>
         </div>
 
         <div>
@@ -37,6 +32,6 @@
             </table>
         </div>
 
-        <script src="requester.js"></script>
+        <script type="module" src="main.js"></script>
     </body>
 </html>

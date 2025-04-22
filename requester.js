@@ -1,5 +1,6 @@
 const assignmentURL = "https://sonomaacademy.myschoolapp.com/api/assignment2/StudentAssignmentCenterGet?displayByDueDate=true";
-const scheduleURL = "https://sonomaacademy.myschoolapp.com/api/schedule/ScheduleCurrentDayAnnouncmentParentStudent";
+const announcementURL = "https://sonomaacademy.myschoolapp.com/api/schedule/ScheduleCurrentDayAnnouncmentParentStudent";
+const scheduleURL = "https://sonomaacademy.myschoolapp.com/api/schedule/MyDayCalendarStudentList/";
 
 const worker = "https://saic.andrew-lang-1de.workers.dev";
 
@@ -22,17 +23,23 @@ function getCookie()
     return localStorage.getItem("cookie");
 }
 
-function setCookie(cookie)
+export function setCookie(cookie)
 {
     localStorage.setItem("cookie", cookie);
 }
 
-function deleteCookie()
+export function deleteCookie()
 {
     localStorage.removeItem("cookie");
 }
 
-function getSchedule()
+export function getSchedule()
+{
+    return requestFromWorker({"url": scheduleURL})
+}
+
+export function getAssignments()
 {
     return requestFromWorker({"url": assignmentURL})
 }
+

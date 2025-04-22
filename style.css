@@ -46,9 +46,24 @@ table
     margin-left:30pt;
 }
 
-table, th, td {
+.flexTable, .flexTr, .flexTd {
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+.flexTd
+{
+    border-width: 0px 1px 0px 1px;
+}
+
+.flexTr
+{
+    border-width: 0px 0px 1px 0px;
+}
+
+.flexTd
+{
+    width: 33.333333333%;
 }
 
 th
@@ -66,3 +81,27 @@ td
     height: 40pt;
     padding: 0pt 10pt;
 }
+
+.flexTable
+{
+    display: flex;
+}
+
+.flexTr
+{
+    display: flex;
+    margin: 0px;    
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+}
+
+.flexTd
+{
+    display:flex;
+    margin: 0px;    
+    height: 100%; 
+    align-items: center;
+    box-sizing: border-box;
+}
+
