@@ -16,7 +16,9 @@ for(let scheduledItem of schedule)
     let block = makeFlexTd("blockColumn");
     let classActivity = makeFlexTd("classColumn");
 
-    time.innerHTML = scheduledItem
+    time.innerHTML = disappearingResponsiveLabel("Time:") + scheduledItem.MyDayStartTime + " - " + scheduledItem.MyDayEndTime;
+    block.innerHTML = disappearingResponsiveLabel("Block:") + scheduledItem.Block;
+    classActivity.innerHTML = disappearingResponsiveLabel("Class:") + scheduledItem.CourseTitle;
 
     row.appendChild(time);
     row.appendChild(block);
@@ -32,4 +34,9 @@ function makeFlexTd(column)
     flextd.classList.add(column);
 
     return flextd;
+}
+
+function disappearingResponsiveLabel(label)
+{
+    return "<span class=\"responsivelabel\">" + label + "&nbsp;</span>"
 }
