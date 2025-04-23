@@ -8,11 +8,8 @@ function requestFromWorker(params)
 {
     const queryString = new URLSearchParams(params).toString();
 
-    fetch(`${worker}?${queryString}`, { method: "GET", headers: { "Biscuit": "t=" + getCookie(), "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" } })
+    return fetch(`${worker}?${queryString}`, { method: "GET", headers: { "Biscuit": "t=" + getCookie(), "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" } })
     .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    })
     .catch(error => {
       console.error("error happened whoops: ", error);
     });
@@ -33,9 +30,9 @@ export function deleteCookie()
     localStorage.removeItem("cookie");
 }
 
-export function getSchedule()
+export async function getSchedule()
 {
-    return requestFromWorker({"url": scheduleURL})
+    return await requestFromWorker({"url": scheduleURL})
 }
 
 export function getAssignments()
