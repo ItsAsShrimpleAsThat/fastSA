@@ -61,10 +61,11 @@ table
     border-width: 0px 0px 1px 0px;
 }
 
-.flexTd
+.flexTr:last-child
 {
-    width: 33.333333333%;
+    border-width: 0;
 }
+
 
 th
 {
@@ -73,7 +74,21 @@ th
 
 #scheduletable
 {
-    width: 500pt;
+    flex-basis: 800px;
+    max-width: 800px;
+    margin-left: 50px;
+}
+
+@media screen and (max-width:900px) 
+{
+    #scheduletable
+    {   
+        flex: 1;
+        flex-basis: 90%;
+        max-width:90%;
+        margin-left:auto;
+        margin-right:auto;
+    }
 }
 
 td
@@ -85,6 +100,7 @@ td
 .flexTable
 {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .flexTr
@@ -92,16 +108,80 @@ td
     display: flex;
     margin: 0px;    
     width: 100%;
-    height: 30px;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .flexTd
 {
     display:flex;
     margin: 0px;    
-    height: 100%; 
+    height: 30px; 
     align-items: center;
     box-sizing: border-box;
+    padding: 8px
 }
 
+.flexTh
+{
+    font-weight: bold;
+}
+
+.timeColumn
+{
+    flex-basis: 130pt;
+    max-width: 130pt;
+}
+
+.blockColumn
+{
+    flex-basis: 45pt;
+    max-width: 45pt;
+}
+
+.classColumn
+{
+    flex: 1;
+}
+
+.responsivelabel
+{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .flexTh
+    {
+        display:none;
+    }
+    
+    .flexTd
+    {
+        flex-basis: 100%;
+        max-width: 100%;
+        border-width: 0px 0px 1px 0px;
+    }
+
+    .flexTr
+    {
+        border-width: 0px 0px 3px 0px;
+    }
+
+    .flexTr:last-child
+    {
+        border-width: 0;
+    }
+
+    #scheduletable
+    {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .responsivelabel
+    {
+        display:inline;
+        font-weight: bold;
+    }
+}
