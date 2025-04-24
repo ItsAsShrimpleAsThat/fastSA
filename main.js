@@ -17,8 +17,9 @@ for(let scheduledItem of schedule)
     let classActivity = makeFlexTd("classColumn");
 
     time.innerHTML = disappearingResponsiveLabel("Time:") + scheduledItem.MyDayStartTime + " - " + scheduledItem.MyDayEndTime;
-    block.innerHTML = disappearingResponsiveLabel("Block:") + scheduledItem.Block;
+    block.innerHTML = disappearingResponsiveLabel("Block:") + (scheduledItem.Block.length > 8 ? makeAcronym(scheduledItem.Block) : scheduledItem.Block );
     classActivity.innerHTML = disappearingResponsiveLabel("Class:") + scheduledItem.CourseTitle;
+
 
     if(currentUnix > humanTimeTodayToUnixTime(scheduledItem.MyDayEndTime))
     {
@@ -49,3 +50,11 @@ function disappearingResponsiveLabel(label)
 {
     return "<span class=\"responsivelabel\">" + label + "&nbsp;</span>"
 }
+
+function makeAcronym(str) {
+    return str
+      .split(/\s+/)               // Split by whitespace
+      .filter(word => word.length > 0) // Skip empty words
+      .map(word => word[0].toUpperCase()) // Get first letter and uppercase it
+      .join('');
+  }
