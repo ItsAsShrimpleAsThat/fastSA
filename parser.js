@@ -50,3 +50,18 @@ function getClassName(summaryLine) {
       return content; // no colon, treat entire thing as class name
     }
 }
+
+export function humanTimeTodayToUnixTime(humanTime) 
+{
+    const [time, meridian] = humanTime.trim().split(/\s+/); // splits on any whitespace
+    let [hours, minutes] = time.split(':').map(Number);
+  
+    // Convert to 24-hour format
+    if (meridian.toUpperCase() === 'PM' && hours !== 12) hours += 12;
+    if (meridian.toUpperCase() === 'AM' && hours === 12) hours = 0;
+  
+    const now = new Date();
+    now.setHours(hours, minutes, 0, 0);
+  
+    return Math.floor(now.getTime() / 1000);
+  }

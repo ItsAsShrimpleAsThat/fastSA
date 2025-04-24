@@ -66,6 +66,15 @@ table
     border-width: 0;
 }
 
+.completedClass
+{
+    background-color: rgb(182, 255, 182);
+}
+
+.inprogressClass
+{
+    background-color: rgb(251, 255, 182);
+}
 
 th
 {
