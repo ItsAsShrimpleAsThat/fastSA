@@ -42,18 +42,21 @@ header
 .inputFlexbox>input
 {
     flex: 1;
+    margin-left: 4px;
 }
 
 [popover]:popover-open input, [popover]:popover-open button
 {
     box-sizing: border-box;
+    height: 25px;
 }
 
 [popover]:popover-open button
 {
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    margin-bottom: 8px;
+    width: 80px;
 }
 
 [popover]:popover-open

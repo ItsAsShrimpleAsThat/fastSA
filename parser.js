@@ -1,8 +1,6 @@
 export function parse(icsText)
 {
     const icsLines = icsText.split("\n");
-    
-       
 }
 
 function parse8601withTime(timestamp)
@@ -64,4 +62,4 @@ export function humanTimeTodayToUnixTime(humanTime)
     now.setHours(hours, minutes, 0, 0);
   
     return Math.floor(now.getTime() / 1000);
-  }
+}
