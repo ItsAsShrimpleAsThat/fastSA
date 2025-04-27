@@ -1,7 +1,9 @@
 import { setCookie, deleteCookie, getSchedule } from "./requester.js";
 import { humanTimeTodayToUnixTime } from "./parser.js";
 import { testSchedule } from "./schedule.js";
+
 const scheduleTable = document.getElementById("scheduletable");
+
 // const schedule = await getSchedule();
 const schedule = testSchedule();
 const currentUnix = Date.now() / 1000.0

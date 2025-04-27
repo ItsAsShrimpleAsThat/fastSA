@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap');
 
 body
 {
@@ -17,21 +17,99 @@ header
     align-items: center;
 }
 
-header p
+#sitename
 {
     color:white;
     margin: 20pt;
     font-family: 'Special Gothic Expanded One', Arial, sans-serif;
 }
 
+.inputLabel
+{
+    display:inline;
+    margin:0px;
+}
+
+.inputFlexbox
+{
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    width:100%;
+    padding: 8px;
+}
+
+.inputFlexbox>input
+{
+    flex: 1;
+}
+
+[popover]:popover-open input, [popover]:popover-open button
+{
+    box-sizing: border-box;
+}
+
+[popover]:popover-open button
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+[popover]:popover-open
+{
+    display:flex;
+    width: 500px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#headerbuttons
+{
+    display:flex;
+    justify-content: right;
+    flex: 1;
+}
+
+#headerbuttons>button
+{
+    margin-right: 16px;
+    font-size: medium;
+    border-width: 0px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+[popover]:popover-open h2
+{
+    width: 100%;
+}
+
+[popover]:popover-open p:not(.inputLabel)
+{
+    margin: 8px;
+}
+
+#logocontainer
+{
+    display:flex;
+    height: 100%;
+    width: auto;
+    align-items: center;
+}
+
 #sitename
 {
     margin-left:5pt;
-    font-size: xx-large;
+    font-size: 24pt;
 }
 
 #mainlogo
 {
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: 20pt;
     max-height: 75%;
 }
@@ -192,5 +270,40 @@ td
     {
         display:inline;
         font-weight: bold;
+    }
+
+    [popover]:popover-open
+    {
+        width: 83.3333%
+    }
+
+    [popover]:popover-open button
+    {
+        width:100%;
+        margin-top: 8px;
+    }
+
+    [popover]:popover-open input
+    {
+        width:100%;
+        margin-top: 0px;
+    }
+
+    #logocontainer
+    {
+        height: 80%;
+        font-size: 18pt
+    }
+
+    #sitename
+    {
+        font-size: 18pt
+    }
+
+    .inputLabel
+    {
+        display: block;
+        width:100%;
+        margin-bottom: 0px;
     }
 }

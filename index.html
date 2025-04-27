@@ -10,8 +10,42 @@
 
     <body>
         <header>
-            <img id="mainlogo" src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/694/site/1306/images/homeBG.png">
-            <p id="sitename">fastSA</p>
+            <div id="logocontainer">
+                <img id="mainlogo" src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/694/site/1306/images/homeBG.png">
+                <p id="sitename">fastSA</p>
+            </div>
+
+            <div popover id="loginpopup">
+                <h2>Log In</h2>
+                
+                <div class="inputFlexbox">
+                    <p class="inputLabel">Please enter your cookie's "t" value:&nbsp;</p>
+                    <input style="margin-bottom: 8px;" name="loginfield">
+                </div>
+                
+                <button type="button">Submit</button>
+            </div>
+            <div popover id="fallbackspopup">
+                <h2>Add Fallbacks</h2>
+                <p>Please enter the following webcal links:&nbsp;</p>
+
+                <div class="inputFlexbox">
+                    <p class="inputLabel">Assignments:</p>
+                    <input name="assignmentsWebcal">
+                </div>
+
+                <div class="inputFlexbox">
+                    <p class="inputLabel">Schedule:</p>
+                    <input name="scheduleWebcal">
+                </div>
+
+                <button type="button">Submit</button>
+            </div>
+
+            <div id="headerbuttons">
+                <button popovertarget="loginpopup">Log in</button> 
+                <button popovertarget="fallbackspopup">Fallbacks</button> 
+            </div>
         </header>
 
         <div>
