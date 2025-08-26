@@ -142,6 +142,12 @@ table
     border-width: 0px 0px 1px 0px;
 }
 
+.flexTr:nth-child(even)
+{
+    border-width: 0px 0px 1px 0px;
+    background-color: rgb(226, 226, 226);
+}
+
 .flexTr:last-child
 {
     border-width: 0;
@@ -149,12 +155,23 @@ table
 
 .completedClass
 {
-    background-color: rgb(182, 255, 182);
+    background-color: rgb(182, 255, 182) !important;
+}
+
+.completedClass:nth-child(odd)
+{
+    background-color: rgb(139, 236, 139) !important;
+    
 }
 
 .inprogressClass
 {
-    background-color: rgb(251, 255, 182);
+    background-color: rgb(251, 255, 182) !important;
+}
+
+.inprogressClass:nth-child(odd)
+{
+    background-color: rgb(232, 236, 139) !important;
 }
 
 th

@@ -1,6 +1,62 @@
-export function parse(icsText)
+const classNames = [];
+const fullClassNames = [];
+const fullNameToClassName = {};
+
+const baseEvent = { "UID": null, "DTSTART": new Date(), "withTime": false, "SUMMARY": "" };
+export function parseICS(scheduleIcs)
 {
-    const icsLines = icsText.split("\n");
+    let inEvent = false;
+
+    let schedule = [];
+    let calEvent = JSON.parse(JSON.stringify(baseEvent));
+    let line = ""
+
+    for(line of scheduleIcs.split("\n"))
+    {
+        if(line == "BEGIN:VEVENT")
+        {
+            calEvent = JSON.parse(JSON.stringify(baseEvent));
+            inEvent = true;
+        }
+        if(line == "END:VEVENT")
+        {
+            schedule.push(calEvent);
+            calEvent = {};
+            inEvent = false;
+        }
+        else if(inEvent)
+        {
+            if(line.substring(0, 4) == "UID:")
+            {
+                calEvent.UID = line.substring(5, line.length);
+            }
+            else if(line.substring(0, 7) == "DTSTART")
+            {
+                if(line.substring(8, 18) == "VALUE=DATE")
+                {
+                    calEvent.DTSTART = parse8601withoutTime(line.substring(19))
+                    calEvent.withTime = false;
+                }
+                else if(line.substring(8, 12) == "TZID")
+                {
+                    calEvent.DTSTART = parse8601withTime(line.substring(line.length - 15))
+                    calEvent.withTime = true;
+                }
+            }
+            else if(line.substring(0, 7) == "SUMMARY")
+            {
+                console.log(line);
+                calEvent.SUMMARY = line.substring(8);
+            }
+        }
+    }
+
+    return schedule;
+}
+
+export function parseAssignmentsICS()
+{
+    
 }
 
 function parse8601withTime(timestamp)

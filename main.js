@@ -1,6 +1,7 @@
 import { setCookie, deleteCookie, getSchedule } from "./requester.js";
-import { humanTimeTodayToUnixTime } from "./parser.js";
+import { humanTimeTodayToUnixTime, parseICS } from "./parser.js";
 import { testSchedule } from "./schedule.js";
+import { getTestICS } from "./testics.js";
 
 const scheduleTable = document.getElementById("scheduletable");
 
@@ -60,3 +61,5 @@ function makeAcronym(str) {
       .map(word => word[0].toUpperCase()) // Get first letter and uppercase it
       .join('');
   }
+
+console.log(parseICS(getTestICS()))
