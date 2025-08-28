@@ -66,11 +66,64 @@ export function parseICS(scheduleIcs)
     return schedule;
 }
 
-export function getSchedule(date)
+export function getDailySchedule(events, date)
 {
-    
+    let firstItemThatMatchesTodaysDateIndex = events.findIndex(calEvent => datesMatch(date, calEvent.DTSTART));
+
+    let tomorrow = new Date(date);
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    let firstItemThatMatchesTomorrowsDateIndex = events.findIndex(calEvent => datesMatch(tomorrow, calEvent.DTSTART));
+
+    console.log("today index:" + firstItemThatMatchesTodaysDateIndex)
+    console.log("tmr index:" + firstItemThatMatchesTomorrowsDateIndex)
+
+    if(firstItemThatMatchesTodaysDateIndex == -1)
+    {
+        return [];
+    }
+    if(firstItemThatMatchesTomorrowsDateIndex == -1)
+    {
+        firstItemThatMatchesTomorrowsDateIndex = events.length;
+    }
+
+    let todaysSchedule = [];
+    const baseDay = { "MyDayStartTime": "12:00 AM", "MyDayEndTime": "12:00 AM", "Block": "Null", "CourseTitle" : "Null Title" };
+    const options = {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+    };
+
+    for(let i = firstItemThatMatchesTodaysDateIndex; i < firstItemThatMatchesTomorrowsDateIndex; i++)
+    {
+        let scheduleItem = JSON.parse(JSON.stringify(baseDay));
+        let icsItem = events[i];
+
+        scheduleItem.MyDayStartTime = icsItem.DTSTART.toLocaleString("en-US", options);
+        scheduleItem.MyDayEndTime = icsItem.DTEND.toLocaleString("en-US", options);
+        scheduleItem.Block = getBlockFromFullClassString(icsItem.SUMMARY);
+        scheduleItem.CourseTitle = icsItem.SUMMARY;
+
+        todaysSchedule.push(scheduleItem);
+    }
+
+    return todaysSchedule;
 }
 
+function getBlockFromFullClassString(classString)
+{
+    let lastParenthesisIndex = classString.lastIndexOf("(");
+    if(classString.substring(lastParenthesisIndex + 1, lastParenthesisIndex + 3) == "YL")
+    {
+        return classString.substring(lastParenthesisIndex - 2, lastParenthesisIndex + 4);
+    }
+    return classString.substring(lastParenthesisIndex + 1, lastParenthesisIndex + 2);
+}
+
+function datesMatch(date1, date2)
+{
+    return date1.getDate() == date2.getDate() && date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear();
+}
 
 function parse8601withTime(timestamp)
 {

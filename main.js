@@ -1,5 +1,5 @@
 import { setCookie, deleteCookie, getSchedule } from "./requester.js";
-import { humanTimeTodayToUnixTime, parseICS } from "./parser.js";
+import { humanTimeTodayToUnixTime, parseICS, getDailySchedule } from "./parser.js";
 import { testSchedule } from "./schedule.js";
 import { getTestICS } from "./testics.js";
 
@@ -62,4 +62,5 @@ function makeAcronym(str) {
       .join('');
   }
 
-console.log(parseICS(getTestICS()))
+console.log("Parsed ics schedule:");
+console.log(getDailySchedule(parseICS(getTestICS()), new Date()))
