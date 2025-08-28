@@ -2,7 +2,7 @@ const classNames = [];
 const fullClassNames = [];
 const fullNameToClassName = {};
 
-const baseEvent = { "UID": null, "DTSTART": new Date(), "withTime": false, "SUMMARY": "" };
+const baseEvent = { "UID": null, "DTSTART": new Date(), "DTEND": new Date(), "dtStartHasTime": false, "dtEndHasTime": false, "SUMMARY": "" };
 export function parseICS(scheduleIcs)
 {
     let inEvent = false;
@@ -35,17 +35,29 @@ export function parseICS(scheduleIcs)
                 if(line.substring(8, 18) == "VALUE=DATE")
                 {
                     calEvent.DTSTART = parse8601withoutTime(line.substring(19))
-                    calEvent.withTime = false;
+                    calEvent.dtStartHasTime = false;
                 }
                 else if(line.substring(8, 12) == "TZID")
                 {
                     calEvent.DTSTART = parse8601withTime(line.substring(line.length - 15))
-                    calEvent.withTime = true;
+                    calEvent.dtStartHasTime = true;
+                }
+            }
+            else if(line.substring(0, 5) == "DTEND")
+            {
+                if(line.substring(6, 16) == "VALUE=DATE")
+                {
+                    calEvent.DTEND = parse8601withoutTime(line.substring(17))
+                    calEvent.dtEndHasTime = false;
+                }
+                else if(line.substring(6, 10) == "TZID")
+                {
+                    calEvent.DTEND = parse8601withTime(line.substring(line.length - 15))
+                    calEvent.dtEndHasTime = true;
                 }
             }
             else if(line.substring(0, 7) == "SUMMARY")
             {
-                console.log(line);
                 calEvent.SUMMARY = line.substring(8);
             }
         }
@@ -54,10 +66,11 @@ export function parseICS(scheduleIcs)
     return schedule;
 }
 
-export function parseAssignmentsICS()
+export function getSchedule(date)
 {
     
 }
+
 
 function parse8601withTime(timestamp)
 {
