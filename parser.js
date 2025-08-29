@@ -69,10 +69,7 @@ export function parseICS(scheduleIcs)
 export function getDailySchedule(events, date)
 {
     let firstItemThatMatchesTodaysDateIndex = events.findIndex(calEvent => datesMatch(date, calEvent.DTSTART));
-
-    let tomorrow = new Date(date);
-    tomorrow.setDate(tomorrow.getDate() + 1)
-    let firstItemThatMatchesTomorrowsDateIndex = events.findIndex(calEvent => datesMatch(tomorrow, calEvent.DTSTART));
+    let firstItemThatMatchesTomorrowsDateIndex = events.findIndex(calEvent => dateIsGreaterThan(calEvent.DTSTART, date));
 
     console.log("today index:" + firstItemThatMatchesTodaysDateIndex)
     console.log("tmr index:" + firstItemThatMatchesTomorrowsDateIndex)
@@ -110,19 +107,28 @@ export function getDailySchedule(events, date)
     return todaysSchedule;
 }
 
+// FIXME: get last close parenthesis, detect if diff == 2 if we need to expand
 function getBlockFromFullClassString(classString)
 {
-    let lastParenthesisIndex = classString.lastIndexOf("(");
-    if(classString.substring(lastParenthesisIndex + 1, lastParenthesisIndex + 3) == "YL")
-    {
-        return classString.substring(lastParenthesisIndex - 2, lastParenthesisIndex + 4);
-    }
-    return classString.substring(lastParenthesisIndex + 1, lastParenthesisIndex + 2);
+    let splitString = classString.split("-"); 
+    let blockSection = splitString[splitString.length - 1];
+
+    let block = blockSection.substring(blockSection.indexOf("(") + 1, blockSection.lastIndexOf(")"));
+
+    return block;
 }
 
 function datesMatch(date1, date2)
 {
     return date1.getDate() == date2.getDate() && date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear();
+}
+
+function dateIsGreaterThan(date1, date2)
+{
+    let timeless1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
+    let timeless2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
+
+    return timeless1 > timeless2;
 }
 
 function parse8601withTime(timestamp)
